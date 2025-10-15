@@ -71,22 +71,22 @@ function App() {
       {/* Host Images - Four Corners */}
       <div className="absolute inset-0 pointer-events-none hidden lg:block">
         {/* Top Left - Sheldon */}
-        <div className="absolute top-4 left-12 xl:top-6 xl:left-20 2xl:left-32 w-48 xl:w-56 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-4 left-4 lg:left-6 xl:top-6 xl:left-16 2xl:left-28 w-24 lg:w-28 xl:w-40 2xl:w-52 opacity-70 hover:opacity-100 transition-opacity duration-300">
           <img src={Sheldon} alt="Sheldon" className="w-full h-auto" />
         </div>
         
         {/* Top Right - Ran */}
-        <div className="absolute top-4 right-12 xl:top-6 xl:right-20 2xl:right-32 w-48 xl:w-56 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-4 right-4 lg:right-6 xl:top-6 xl:right-16 2xl:right-28 w-24 lg:w-28 xl:w-40 2xl:w-52 opacity-70 hover:opacity-100 transition-opacity duration-300">
           <img src={Ran} alt="Ran" className="w-full h-auto" />
         </div>
         
         {/* Bottom Left - Dylan */}
-        <div className="absolute bottom-24 left-12 xl:bottom-28 xl:left-20 2xl:left-32 w-48 xl:w-56 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-24 left-4 lg:left-6 xl:bottom-28 xl:left-16 2xl:left-28 w-24 lg:w-28 xl:w-40 2xl:w-52 opacity-70 hover:opacity-100 transition-opacity duration-300">
           <img src={Dylan} alt="Dylan" className="w-full h-auto" />
         </div>
         
         {/* Bottom Right - Kyle */}
-        <div className="absolute bottom-24 right-12 xl:bottom-28 xl:right-20 2xl:right-32 w-48 xl:w-56 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-24 right-4 lg:right-6 xl:bottom-28 xl:right-16 2xl:right-28 w-24 lg:w-28 xl:w-40 2xl:w-52 opacity-70 hover:opacity-100 transition-opacity duration-300">
           <img src={Kyle} alt="Kyle" className="w-full h-auto" />
         </div>
       </div>
