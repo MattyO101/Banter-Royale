@@ -2,15 +2,15 @@ import { useState } from 'react'
 import { Twitter } from 'lucide-react'
 import './App.css'
 
-// Import assets
+// Import images
 import BRLogo from './assets/BRlogo.png'
 import ComingSoonText from './assets/COMINGSOON_.png'
 import CryptoBanterLogo from './assets/CryptoBanterWhite.png'
-import Background from './assets/Background.png'
-import DextoolsIcon from './assets/dextools-icon.png'
+import BackgroundImage from './assets/Background.png'
 import DexscreenerIcon from './assets/dexscreener-icon.png'
+import DextoolsIcon from './assets/dextools-icon.png'
 
-// Import individual host images
+// Import host images
 import Sheldon from './assets/sheldon.png'
 import Ran from './assets/ran.png'
 import Dylan from './assets/dylan.png'
@@ -18,14 +18,12 @@ import Kyle from './assets/kyle.png'
 
 function App() {
   const [email, setEmail] = useState('')
-  const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!email) return
-    
     setIsLoading(true)
     setError('')
     
@@ -42,29 +40,28 @@ function App() {
       
       if (response.ok) {
         setIsSubmitted(true)
-        setTimeout(() => {
-          setIsSubmitted(false)
-          setEmail('')
-        }, 3000)
+        setEmail('')
+        setTimeout(() => setIsSubmitted(false), 3000)
       } else {
-        setError(data.error || 'Failed to subscribe')
+        setError(data.error || 'Failed to subscribe. Please try again.')
       }
     } catch (err) {
       setError('Network error. Please try again.')
-      console.error('Subscription error:', err)
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
-      {/* Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${Background})` }}
-      />
-      
+    <div 
+      className="min-h-screen w-full relative overflow-hidden flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${BackgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       {/* Overlay gradient for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
       
@@ -93,17 +90,37 @@ function App() {
       
       {/* Main Content - Centered */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12">
-        {/* Logo */}
-        <div className="mb-4 lg:mb-6 animate-fade-in">
-          <img 
-            src={BRLogo} 
-            alt="Banter Royale Logo" 
-            className="w-64 sm:w-80 lg:w-96 xl:w-[420px] h-auto"
-          />
+        {/* Logo and Powered By Container */}
+        <div className="flex flex-col items-center mb-6 lg:mb-8">
+          {/* Logo */}
+          <div className="mb-1 lg:mb-2 animate-fade-in">
+            <img 
+              src={BRLogo} 
+              alt="Banter Royale Logo" 
+              className="w-64 sm:w-80 lg:w-96 xl:w-[420px] h-auto"
+            />
+          </div>
+          
+          {/* Powered By Crypto Banter - Aligned with B in BANTER */}
+          <div className="flex items-center gap-2 sm:gap-3 animate-fade-in-up self-start -mt-2 lg:-mt-3" style={{ marginLeft: '10.5%' }}>
+            <span className="text-white/80 text-xs uppercase tracking-wider" style={{ fontFamily: 'Lato, sans-serif' }}>Powered by</span>
+            <a 
+              href="https://www.youtube.com/@CryptoBanterGroup" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src={CryptoBanterLogo} 
+                alt="Crypto Banter" 
+                className="h-6 sm:h-7 w-auto"
+              />
+            </a>
+          </div>
         </div>
         
-        {/* Coming Soon Text */}
-        <div className="mb-6 lg:mb-8 animate-fade-in-up">
+        {/* Coming Soon Text - Added more padding */}
+        <div className="my-8 lg:my-10 animate-fade-in-up">
           <img 
             src={ComingSoonText} 
             alt="Coming Soon" 
@@ -146,7 +163,7 @@ function App() {
         </div>
         
         {/* Twitter Link */}
-        <div className="mb-5 lg:mb-6 animate-fade-in-up animation-delay-300">
+        <div className="animate-fade-in-up animation-delay-300">
           <a 
             href="https://x.com/banter_royale" 
             target="_blank" 
@@ -159,53 +176,36 @@ function App() {
             <span className="text-sm sm:text-base font-medium" style={{ fontFamily: 'Lato, sans-serif' }}>Follow us on X</span>
           </a>
         </div>
-        
-        {/* Token Links */}
-        <div className="flex gap-5 sm:gap-6 mb-5 lg:mb-6 animate-fade-in-up animation-delay-400">
-          <a 
-            href="https://dexscreener.com/solana/abag5yndps9uschv4fxc14uuansrmss8nru7en8uy7yg" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="transform hover:scale-110 transition-transform duration-300"
-            title="Dexscreener"
-          >
-            <img 
-              src={DexscreenerIcon} 
-              alt="Dexscreener" 
-              className="h-12 sm:h-14 w-auto rounded-lg hover:opacity-90 transition-all"
-            />
-          </a>
-          <a 
-            href="https://www.dextools.io/app/en/solana/pair-explorer/ABag5ynDPS9uscHv4fXC14uUanSRmss8nRu7En8Uy7yg?t=1760449317648" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="transform hover:scale-110 transition-transform duration-300"
-            title="Dextools"
-          >
-            <img 
-              src={DextoolsIcon} 
-              alt="Dextools" 
-              className="h-12 sm:h-14 w-auto rounded-lg hover:opacity-90 transition-all"
-            />
-          </a>
-        </div>
-        
-        {/* Powered By Crypto Banter */}
-        <div className="flex items-center gap-2 sm:gap-3 animate-fade-in-up animation-delay-500">
-          <span className="text-white/80 text-xs uppercase tracking-wider" style={{ fontFamily: 'Lato, sans-serif' }}>Powered by</span>
-          <a 
-            href="https://www.youtube.com/@CryptoBanterGroup" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="hover:opacity-80 transition-opacity"
-          >
-            <img 
-              src={CryptoBanterLogo} 
-              alt="Crypto Banter" 
-              className="h-6 sm:h-7 w-auto"
-            />
-          </a>
-        </div>
+      </div>
+      
+      {/* Token Links - Moved to bottom of page, centered properly */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-6 sm:gap-8 z-20 animate-fade-in-up animation-delay-400">
+        <a 
+          href="https://dexscreener.com/solana/abag5yndps9uschv4fxc14uuansrmss8nru7en8uy7yg" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transform hover:scale-110 transition-transform duration-300"
+          title="Dexscreener"
+        >
+          <img 
+            src={DexscreenerIcon} 
+            alt="Dexscreener" 
+            className="h-12 sm:h-14 w-auto rounded-lg hover:opacity-90 transition-all"
+          />
+        </a>
+        <a 
+          href="https://www.dextools.io/app/en/solana/pair-explorer/ABag5ynDPS9uscHv4fXC14uUanSRmss8nRu7En8Uy7yg?t=1760449317648" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transform hover:scale-110 transition-transform duration-300"
+          title="Dextools"
+        >
+          <img 
+            src={DextoolsIcon} 
+            alt="Dextools" 
+            className="h-12 sm:h-14 w-auto rounded-lg hover:opacity-90 transition-all"
+          />
+        </a>
       </div>
     </div>
   )
